@@ -28,7 +28,8 @@ import demoforestation_replication as first # replication study
 import demoforestation_new_data as second # repeat above with new data
 import demoforestation_specified as third # panel data analysis
 import demoforestation_differenced as fourth # differenced data analysis
-import demoforestation_spatial as fifth # spatial democracy term analysis
+import demoforestation_specified_spatial as fifth # spatial democracy term included
+import demoforestation_differenced_spatial as sixth # spatial democracy term included
 
 # Run them
 
@@ -37,4 +38,5 @@ second
 third
 fourth
 fifth
+sixth
 
