@@ -10,7 +10,7 @@ filepath = 'C:/Users/User/Documents/Data/'
 
 # Make all drectories necessary for this project
 
-directories = ['Demoforestation', 'Demoforestation/Replication', 'Demoforestation/Specified']
+directories = ['Demoforestation', 'Demoforestation/Replication', 'Demoforestation/Specified', 'Demoforestation/Spatial']
 
 for d in directories:
     
