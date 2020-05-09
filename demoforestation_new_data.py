@@ -6,6 +6,7 @@ import numpy as np
 import pandas as pd
 import statsmodels.api as stats
 from matplotlib import pyplot as plt
+from ToTeX import restab
 
 # Reading in the data
 
@@ -23,13 +24,13 @@ Xf12 = stats.add_constant(data[['Democracy(20)_00', 'Democracy(20)_00_2']])
 f1m1 = stats.OLS(Yf1,Xf11)
 f1m2 = stats.OLS(Yf1,Xf12)
 
-f1r1 = f1m1.fit()
+f1r1 = f1m1.fit(cov_type = 'HC1')
 print(f1r1.summary())
 file = open('C:/Users/User/Documents/Data/Demoforestation/Replication/New_Figure_1_model_1.txt', 'w')
 file.write(f1r1.summary().as_text())
 file.close()
 
-f1r2 = f1m2.fit()
+f1r2 = f1m2.fit(cov_type = 'HC1')
 print(f1r2.summary())
 file = open('C:/Users/User/Documents/Data/Demoforestation/Replication/New_Figure_1_model_2.txt', 'w')
 file.write(f1r2.summary().as_text())
@@ -77,14 +78,18 @@ mod6 = stats.OLS(df6['Rate_0010'],X6)
 mod7 = stats.OLS(df7['Rate_0010'],X7)
 
 mods = [mod1, mod2, mod3, mod4, mod5, mod6, mod7]
+res_list = []
 
 for mod in mods:
     
-    res = mod.fit()
+    res = mod.fit(cov_type = 'HC1')
+    res_list.append(res)
     print(res.summary())
     file = open('C:/Users/User/Documents/Data/Demoforestation/Replication/New_Model_' + str(mods.index(mod)+1) + '.txt', 'w')
     file.write(res.summary().as_text())
     file.close()
+
+restab(res_list, 'C:/Users/User/Documents/Data/Demoforestation/Replication/restab_new_data.txt')
 
 # (3) Replicating the cluster analyses
 
