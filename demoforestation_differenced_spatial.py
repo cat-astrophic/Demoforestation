@@ -47,7 +47,7 @@ res_list = []
 
 for i in range(len(Xs)):
 
-    res = stats.OLS(Ys[i],Xs[i]).fit()
+    res = stats.OLS(Ys[i],Xs[i]).fit(cov_type = 'HC1')
     res_list.append(res)
     print(res.summary())
     file = open('C:/Users/User/Documents/Data/Demoforestation/Spatial/Differenced_Model_' + str(i+1) + '.txt', 'w')
@@ -89,7 +89,7 @@ res_list = []
 
 for i in range(len(Xs)):
 
-    res = stats.OLS(Ys[i],Xs[i]).fit()
+    res = stats.OLS(Ys[i],Xs[i]).fit(cov_type = 'HC1')
     res_list.append(res)
     print(res.summary())
     file = open('C:/Users/User/Documents/Data/Demoforestation/Spatial/Differenced_Model_Binary_' + str(i+1) + '.txt', 'w')
@@ -130,7 +130,7 @@ Xs = [X21, X22, X23]
 res_list = []
 for i in range(len(Xs)):
 
-    res = stats.OLS(Ys[i],Xs[i]).fit()
+    res = stats.OLS(Ys[i],Xs[i]).fit(cov_type = 'HC1')
     res_list.append(res)
     print(res.summary())
     file = open('C:/Users/User/Documents/Data/Demoforestation/Spatial/Differenced_Model_NonBinary_' + str(i+1) + '.txt', 'w')
