@@ -6,6 +6,7 @@ import numpy as np
 import pandas as pd
 import statsmodels.api as stats
 from matplotlib import pyplot as plt
+from ToTeX import restab
 
 # Reading in the data
 
@@ -77,14 +78,18 @@ mod6 = stats.OLS(df6['Rate_9000'],X6)
 mod7 = stats.OLS(df7['Rate_9000'],X7)
 
 mods = [mod1, mod2, mod3, mod4, mod5, mod6, mod7]
+res_list = []
 
 for mod in mods:
     
-    res = mod.fit()
+    res = mod.fit(cov_type = 'HC1')
+    res_list.append(res)
     print(res.summary())
     file = open('C:/Users/User/Documents/Data/Demoforestation/Replication/Model_' + str(mods.index(mod)+1) + '.txt', 'w')
     file.write(res.summary().as_text())
     file.close()
+    
+restab(res_list, 'C:/Users/User/Documents/Data/Demoforestation/Replication/restab_replication.txt')
 
 # (3) Replicating the cluster analyses
 
