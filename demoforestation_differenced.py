@@ -14,26 +14,29 @@ data = pd.read_csv('C:/Users/User/Documents/Data/demoforestation_differenced.csv
 
 # Data prep
 
-df1 = data[['Rate', 'Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land', 'Continent']].dropna()
-df2 = data[['Rate', 'Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land', 'Ag_Land_Rate', 'Continent']].dropna()
-df3 = data[['Rate', 'Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land', 'Ag_Land_Rate', 'Tariff_Rate', 'Continent']].dropna()
+dXi = data['Democracy']*data['GDP_per_capita']
+data = pd.concat([data, pd.DataFrame(dXi, columns = ['D X GDP'])], axis = 1)
+
+df1 = data[['Rate', 'Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land', 'GDP_per_capita', 'D X GDP', 'Continent']].dropna()
+df2 = data[['Rate', 'Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land', 'GDP_per_capita', 'D X GDP', 'Ag_Land_Rate', 'Continent']].dropna()
+df3 = data[['Rate', 'Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land', 'GDP_per_capita', 'D X GDP', 'Ag_Land_Rate', 'Tariff_Rate', 'Continent']].dropna()
 
 d1 = pd.get_dummies(df1['Continent'])
 d2 = pd.get_dummies(df2['Continent'])
 d3 = pd.get_dummies(df3['Continent'])
 
-X1 = stats.add_constant(df1[['Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land']])
-X2 = stats.add_constant(df2[['Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land', 'Ag_Land_Rate']])
-X3 = stats.add_constant(df3[['Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land', 'Ag_Land_Rate', 'Tariff_Rate']])
+X1 = stats.add_constant(df1[['Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land', 'GDP_per_capita', 'D X GDP']])
+X2 = stats.add_constant(df2[['Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land', 'GDP_per_capita', 'D X GDP', 'Ag_Land_Rate']])
+X3 = stats.add_constant(df3[['Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land', 'GDP_per_capita', 'D X GDP', 'Ag_Land_Rate', 'Tariff_Rate']])
 
-X1 = X1.join(d1).drop('Oceania', axis = 1)
-X2 = X2.join(d2).drop('Oceania', axis = 1)
-X3 = X3.join(d3).drop('Oceania', axis = 1)
+X4 = X1.join(d1).drop('Oceania', axis = 1)
+X5 = X2.join(d2).drop('Oceania', axis = 1)
+X6 = X3.join(d3).drop('Oceania', axis = 1)
 
 # Running regressions and saving results
 
-Ys = [df1['Rate'], df2['Rate'], df3['Rate']]
-Xs = [X1, X2, X3]
+Ys = [df1['Rate'], df2['Rate'], df3['Rate'], df1['Rate'], df2['Rate'], df3['Rate']]
+Xs = [X1, X2, X3, X4, X5, X6]
 res_list = []
 
 for i in range(len(Xs)):

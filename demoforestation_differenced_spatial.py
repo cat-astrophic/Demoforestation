@@ -23,17 +23,20 @@ data = pd.concat([data, pd.DataFrame(Dd, columns = ['W*Demo']), pd.DataFrame(D2d
 
 # Data prep
 
-df1 = data[['Rate', 'W*Demo', 'W*Demo_2', 'Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land', 'Continent']].dropna()
-df2 = data[['Rate', 'W*Demo', 'W*Demo_2', 'Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land', 'Ag_Land_Rate', 'Continent']].dropna()
-df3 = data[['Rate', 'W*Demo', 'W*Demo_2', 'Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land', 'Ag_Land_Rate', 'Tariff_Rate', 'Continent']].dropna()
+dXi = data['Democracy']*data['GDP_per_capita']
+data = pd.concat([data, pd.DataFrame(dXi, columns = ['D X GDP'])], axis = 1)
+
+df1 = data[['Rate', 'W*Demo', 'W*Demo_2', 'Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land', 'GDP_per_capita', 'D X GDP', 'Continent']].dropna()
+df2 = data[['Rate', 'W*Demo', 'W*Demo_2', 'Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land', 'GDP_per_capita', 'D X GDP', 'Ag_Land_Rate', 'Continent']].dropna()
+df3 = data[['Rate', 'W*Demo', 'W*Demo_2', 'Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land', 'GDP_per_capita', 'D X GDP', 'Ag_Land_Rate', 'Tariff_Rate', 'Continent']].dropna()
 
 d1 = pd.get_dummies(df1['Continent'])
 d2 = pd.get_dummies(df2['Continent'])
 d3 = pd.get_dummies(df3['Continent'])
 
-X1 = stats.add_constant(df1[['W*Demo', 'W*Demo_2', 'Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land']])
-X2 = stats.add_constant(df2[['W*Demo', 'W*Demo_2', 'Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land', 'Ag_Land_Rate']])
-X3 = stats.add_constant(df3[['W*Demo', 'W*Demo_2', 'Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land', 'Ag_Land_Rate', 'Tariff_Rate']])
+X1 = stats.add_constant(df1[['W*Demo', 'W*Demo_2', 'Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land', 'GDP_per_capita', 'D X GDP']])
+X2 = stats.add_constant(df2[['W*Demo', 'W*Demo_2', 'Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land', 'GDP_per_capita', 'D X GDP', 'Ag_Land_Rate']])
+X3 = stats.add_constant(df3[['W*Demo', 'W*Demo_2', 'Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land', 'GDP_per_capita', 'D X GDP', 'Ag_Land_Rate', 'Tariff_Rate']])
 
 X1 = X1.join(d1).drop('Oceania', axis = 1)
 X2 = X2.join(d2).drop('Oceania', axis = 1)
@@ -65,17 +68,17 @@ data = pd.concat([data, pd.DataFrame(bi, columns = ['W*D>D'])], axis = 1)
 
 # Data prep
 
-df11 = data[['Rate', 'W*D>D', 'Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land', 'Continent']].dropna()
-df12 = data[['Rate', 'W*D>D', 'Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land', 'Ag_Land_Rate', 'Continent']].dropna()
-df13 = data[['Rate', 'W*D>D', 'Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land', 'Ag_Land_Rate', 'Tariff_Rate', 'Continent']].dropna()
+df11 = data[['Rate', 'W*D>D', 'Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land', 'GDP_per_capita', 'D X GDP', 'Continent']].dropna()
+df12 = data[['Rate', 'W*D>D', 'Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land', 'GDP_per_capita', 'D X GDP', 'Ag_Land_Rate', 'Continent']].dropna()
+df13 = data[['Rate', 'W*D>D', 'Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land', 'GDP_per_capita', 'D X GDP', 'Ag_Land_Rate', 'Tariff_Rate', 'Continent']].dropna()
 
 d11 = pd.get_dummies(df11['Continent'])
 d12 = pd.get_dummies(df12['Continent'])
 d13 = pd.get_dummies(df13['Continent'])
 
-X11 = stats.add_constant(df11[['W*D>D', 'Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land']])
-X12 = stats.add_constant(df12[['W*D>D', 'Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land', 'Ag_Land_Rate']])
-X13 = stats.add_constant(df13[['W*D>D', 'Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land', 'Ag_Land_Rate', 'Tariff_Rate']])
+X11 = stats.add_constant(df11[['W*D>D', 'Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land', 'GDP_per_capita', 'D X GDP']])
+X12 = stats.add_constant(df12[['W*D>D', 'Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land', 'GDP_per_capita', 'D X GDP', 'Ag_Land_Rate']])
+X13 = stats.add_constant(df13[['W*D>D', 'Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land', 'GDP_per_capita', 'D X GDP', 'Ag_Land_Rate', 'Tariff_Rate']])
 
 X11 = X11.join(d11).drop('Oceania', axis = 1)
 X12 = X12.join(d12).drop('Oceania', axis = 1)
