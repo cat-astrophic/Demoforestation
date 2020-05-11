@@ -38,14 +38,14 @@ X1 = stats.add_constant(df1[['W*Demo', 'W*Demo_2', 'Democracy', 'Democracy_2', '
 X2 = stats.add_constant(df2[['W*Demo', 'W*Demo_2', 'Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land', 'GDP_per_capita', 'D X GDP', 'Ag_Land_Rate']])
 X3 = stats.add_constant(df3[['W*Demo', 'W*Demo_2', 'Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land', 'GDP_per_capita', 'D X GDP', 'Ag_Land_Rate', 'Tariff_Rate']])
 
-X1 = X1.join(d1).drop('Oceania', axis = 1)
-X2 = X2.join(d2).drop('Oceania', axis = 1)
-X3 = X3.join(d3).drop('Oceania', axis = 1)
+X4 = X1.join(d1).drop('Oceania', axis = 1)
+X5 = X2.join(d2).drop('Oceania', axis = 1)
+X6 = X3.join(d3).drop('Oceania', axis = 1)
 
 # Running regressions and saving results
 
-Ys = [df1['Rate'], df2['Rate'], df3['Rate']]
-Xs = [X1, X2, X3]
+Ys = [df1['Rate'], df2['Rate'], df3['Rate'], df1['Rate'], df2['Rate'], df3['Rate']]
+Xs = [X1, X2, X3, X4, X5, X6]
 res_list = []
 
 for i in range(len(Xs)):
