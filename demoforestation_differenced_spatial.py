@@ -34,9 +34,9 @@ d1 = pd.get_dummies(df1['Continent'])
 d2 = pd.get_dummies(df2['Continent'])
 d3 = pd.get_dummies(df3['Continent'])
 
-X1 = stats.add_constant(df1[['W*Demo', 'W*Demo_2', 'Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land', 'GDP_per_capita', 'D X GDP']])
-X2 = stats.add_constant(df2[['W*Demo', 'W*Demo_2', 'Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land', 'GDP_per_capita', 'D X GDP', 'Ag_Land_Rate']])
-X3 = stats.add_constant(df3[['W*Demo', 'W*Demo_2', 'Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land', 'GDP_per_capita', 'D X GDP', 'Ag_Land_Rate', 'Tariff_Rate']])
+X1 = stats.add_constant(df1[['W*Demo', 'Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land', 'GDP_per_capita', 'D X GDP']])
+X2 = stats.add_constant(df2[['W*Demo', 'Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land', 'GDP_per_capita', 'D X GDP', 'Ag_Land_Rate']])
+X3 = stats.add_constant(df3[['W*Demo', 'Democracy', 'Democracy_2', 'Education', 'Rural_Pop', 'Ln_Land', 'GDP_per_capita', 'D X GDP', 'Ag_Land_Rate', 'Tariff_Rate']])
 
 X4 = X1.join(d1).drop('Oceania', axis = 1)
 X5 = X2.join(d2).drop('Oceania', axis = 1)
