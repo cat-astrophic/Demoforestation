@@ -7,7 +7,7 @@ def restab(list_of_regression_results, filepath):
     
     models = ['Model ' + str(i+1) + ' & ' for i in range(len(list_of_regression_results))]
     AR2 = [str(format(res.rsquared_adj, '.3f')) + ' & ' for res in list_of_regression_results]
-    F = [str(format(res.fvalue, '.3f')) + ' & ' for res in list_of_regression_results]
+    F = [str(format(res.fvalue[0][0], '.3f')) + ' & ' for res in list_of_regression_results]
     N = [str(int(res.nobs)) + ' & ' for res in list_of_regression_results]
     models.insert(0,'Variable & ')
     AR2.insert(0,'Adjusted $R^{2}$ & ')
@@ -42,15 +42,15 @@ def restab(list_of_regression_results, filepath):
                 
                 stars = ''
                 
-                if res.pvalues[list(betas.keys()).index(x)] < 0.01:
+                if list(res.pvalues)[list(betas.keys()).index(x)] < 0.01:
                     
                     stars = '***'
                     
-                elif res.pvalues[list(betas.keys()).index(x)] < 0.05:
+                elif list(res.pvalues)[list(betas.keys()).index(x)] < 0.05:
                     
                     stars = '**'
                     
-                elif res.pvalues[list(betas.keys()).index(x)] < 0.1:
+                elif list(res.pvalues)[list(betas.keys()).index(x)] < 0.1:
                     
                     stars = '*'
                     
