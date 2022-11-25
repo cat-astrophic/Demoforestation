@@ -18,13 +18,13 @@ Cary, Michael, and Festus Victor Bekun. "Democracy and deforestation: The role o
 
 ### Bibtex:
 
-@article{cary2021democracy,\\
-&nbsp;&nbsp;&nbsp;&nbsp;title={Democracy and deforestation: The role of spillover effects},
-&nbsp;&nbsp;&nbsp;&nbsp;author={Cary, Michael and Bekun, Festus Victor},
-&nbsp;&nbsp;&nbsp;&nbsp;journal={Forest Policy and Economics},
-&nbsp;&nbsp;&nbsp;&nbsp;volume={125},
-&nbsp;&nbsp;&nbsp;&nbsp;pages={102398},
-&nbsp;&nbsp;&nbsp;&nbsp;year={2021},
-&nbsp;&nbsp;&nbsp;&nbsp;publisher={Elsevier}
+@article{cary2021democracy,\
+&nbsp;&nbsp;&nbsp;&nbsp;title={Democracy and deforestation: The role of spillover effects},\
+&nbsp;&nbsp;&nbsp;&nbsp;author={Cary, Michael and Bekun, Festus Victor},\
+&nbsp;&nbsp;&nbsp;&nbsp;journal={Forest Policy and Economics},\
+&nbsp;&nbsp;&nbsp;&nbsp;volume={125},\
+&nbsp;&nbsp;&nbsp;&nbsp;pages={102398},\
+&nbsp;&nbsp;&nbsp;&nbsp;year={2021},\
+&nbsp;&nbsp;&nbsp;&nbsp;publisher={Elsevier}\
 }
 
